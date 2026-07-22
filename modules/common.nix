@@ -7,32 +7,40 @@
   ];
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc.lib
-    zlib
-    glib
-    nss
-    nspr
-    atk
-    cups
-    dbus
-    expat
-    alsa-lib
-    mesa
-    gtk3
-    pango
-    cairo
-    libx11
-    libxcb
-    libxcomposite
-    libxdamage
-    libxext
-    libxfixes
-    libxrandr
-    libxrender
-    libxscrnsaver
-    libxtst
-  ];
+  programs.nix-ld.libraries =
+    with pkgs;
+    (map lib.getLib [
+      glib
+      dbus
+      libdrm
+      pango
+      nss
+      nspr
+      atk
+      at-spi2-atk
+      at-spi2-core
+      cups
+      gdk-pixbuf
+      expat
+      alsa-lib
+      mesa
+      gtk3
+      cairo
+      libx11
+      libxcb
+      libxcomposite
+      libxdamage
+      libxext
+      libxfixes
+      libxrandr
+      libxrender
+      libxscrnsaver
+      libxtst
+      libgbm
+      libxkbcommon
+      zlib
+    ])
+    ++ [ stdenv.cc.cc.lib ];
 
   environment.systemPackages =
     with pkgs; [
