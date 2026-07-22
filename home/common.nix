@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./zsh.nix ];
+  imports = [
+    ./zsh.nix
+    ./develop.nix
+  ];
 
   programs.home-manager.enable = true;
 
@@ -10,6 +13,8 @@
     eza
     fd
     ripgrep
+    unzip
+    trash-cli
   ];
 
   programs.ssh = {
