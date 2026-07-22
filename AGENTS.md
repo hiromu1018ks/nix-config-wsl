@@ -29,7 +29,7 @@ sudo nixos-rebuild switch --flake .#nixos  # apply persistently
 | --- | --- |
 | A flake input | `flake.nix` `inputs`, then thread it via `specialArgs`/`extraSpecialArgs` |
 | System packages / NixOS settings | `modules/common.nix` |
-| User packages, programs, services | `home/common.nix` |
+| User packages, programs, services | `home/common.nix` (import per-domain files like `home/zsh.nix` here) |
 | Per-host system overrides | `hosts/wsl/default.nix` |
 | Per-host home overrides | `hosts/wsl/home.nix` |
 
@@ -53,6 +53,8 @@ here.
   via `extraSpecialArgs`, so home files can reference flake inputs directly.
 - New shared home settings go in `home/common.nix`; `hosts/wsl/home.nix` only
   sets identity (`username`, `homeDirectory`, `stateVersion`) and imports it.
+- Per-domain home configuration (e.g. `programs.zsh`) can live in its own file
+  (e.g. `home/zsh.nix`) and be imported from `home/common.nix`.
 
 ## Conventions
 

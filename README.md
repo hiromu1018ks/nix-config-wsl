@@ -14,7 +14,8 @@ Flake-based NixOS-WSL configuration managed with home-manager.
 ├── modules/
 │   └── common.nix         # Shared NixOS system settings
 └── home/
-    └── common.nix         # Shared Home Manager settings
+    ├── common.nix         # Shared Home Manager settings
+    └── zsh.nix            # Zsh configuration (prompt, plugins, aliases)
 ```
 
 ## Rebuild
