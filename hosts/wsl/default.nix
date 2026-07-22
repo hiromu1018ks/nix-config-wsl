@@ -20,5 +20,8 @@
 
   networking.hostName = "nixos";
 
+  programs.zsh.enable = true;
+  users.users.nixos.shell = pkgs.zsh;
+
   system.stateVersion = "26.05";
 }

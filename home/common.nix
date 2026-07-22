@@ -1,18 +1,33 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
+  imports = [ ./zsh.nix ];
+
   programs.home-manager.enable = true;
+
+  home.packages = with pkgs; [
+    neovim
+    eza
+    fd
+    ripgrep
+  ];
 
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "yes";
-    controlMaster = "auto";
-    controlPersist = "10m";
-    matchBlocks.github = {
-      hostname = "github.com";
-      user = "git";
-      identityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
-      identitiesOnly = true;
+    enableDefaultConfig = false;
+    settings = {
+      "*" = {
+        AddKeysToAgent = "yes";
+        ControlMaster = "auto";
+        ControlPersist = "10m";
+      };
+      "github" = {
+        Host = "github";
+        HostName = "github.com";
+        User = "git";
+        IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
+        IdentitiesOnly = "yes";
+      };
     };
   };
 
