@@ -6,6 +6,23 @@
     "flakes"
   ];
 
+  # WSLg で Electron 等のGUIアプリの日本語が文字化けするため CJK フォントを導入
+  fonts.packages = with pkgs; [
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+  ];
+  fonts.fontconfig.defaultFonts = {
+    sansSerif = [
+      "Noto Sans CJK JP"
+      "Noto Sans"
+    ];
+    serif = [
+      "Noto Serif CJK JP"
+      "Noto Serif"
+    ];
+    monospace = [ "Noto Sans Mono CJK JP" ];
+  };
+
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries =
     with pkgs;
