@@ -87,6 +87,8 @@
       tree = "eza --icons always --classify always --tree";
       cd = "z";
       python = "python3";
+      oc = "opencode"
+      oc-d = "opencode --yolo";
     };
 
     plugins = [

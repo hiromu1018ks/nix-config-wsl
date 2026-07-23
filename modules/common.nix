@@ -56,8 +56,13 @@
       libgbm
       libxkbcommon
       zlib
+      libGL
+      vulkan-loader
     ])
-    ++ [ stdenv.cc.cc.lib ];
+    ++ [
+      stdenv.cc.cc.lib
+      mesa.drivers
+    ];
 
   environment.systemPackages =
     with pkgs; [
